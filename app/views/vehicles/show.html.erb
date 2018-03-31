@@ -1,0 +1,25 @@
+<h1>Vehicle Information</h1>
+
+<%= link_to 'Back', vehicles_path %>
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %>
+
+<table>
+ <tr>
+   <th>Vehicle ID</th>
+   <th>Vehicle Description</th>
+   <th>License Plate</th>
+   <th>Weight</th>
+   <th>Capacity</th>
+
+ </tr>
+
+   <tr>
+     <td><%= @vehicle.VehicleID %></td>
+     <td><%= @vehicle.VehicleDescription %></td>
+     <td><%= @vehicle.LicensePlate %></td>
+     <td><%= @vehicle.Weight %></td>
+     <td><%= @vehicle.Capacity %></td>
+
+   </tr>
+ 
+</table>

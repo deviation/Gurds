@@ -1,0 +1,63 @@
+
+<%= form_with model: @order, local: true do |form| %>
+ 
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@order.errors.count, "error") %> prohibited
+        this order from being saved:
+      </h2>
+      <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+  <p>
+    Customer ID:
+    <%= form.text_field :CustomerID %>
+    
+  </p>
+ 
+  <p>
+    Date Ordered:
+    <%= form.text_field :DateOrdered %>
+  </p>
+
+  <p>
+    Delivery date:
+    <%= form.text_field :DeliveryDate %>
+  </p>
+
+  <p>
+    Employee ID:
+    <%= form.text_field :EmployeeID %>
+  </p>
+
+  <p>
+    Order Type:
+    <%= form.select :OrderType, [ 'Contract', 'Emergency' ], :prompt => 'Select One' %>
+  </p>
+
+  <p>
+    Status:
+    <%= form.select :OrderType, [ 'Picking', 'Intransit', 'Delivered' ] %>
+  </p>
+
+  <p>
+    Note:
+    <%= form.text_area :Note, size: "30x10" %>
+  </p>
+
+  <p>
+    Route ID:
+    <%= form.text_field :RouteID %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

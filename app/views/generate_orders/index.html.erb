@@ -1,0 +1,9 @@
+<h1> Create Orders </h1>
+
+<%= link_to 'Back', orders_path %>
+<br><br>
+<%= form_tag("/generate_orders", method: "get") do %>
+   <%= date_field(:q, :date, :value => Time.now.strftime('%Y-%m-%d')) %>
+     <%= submit_tag("Create Orders") %>
+
+<% end %>

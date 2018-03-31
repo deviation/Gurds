@@ -1,0 +1,49 @@
+<h1>Employees List</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+<p><%= link_to 'Create New Employee', new_employee_path %></p>
+<p><%= link_to "Printable Employees List (PDF)", employees_path(@employees, format: "pdf")  %></p>
+
+<br>
+
+<table>
+ <tr>
+   <th>Employee ID</th>
+   <th>First Name</th>
+   <th>Last Name</th>
+   <th>Phone</th>
+   <th>Email</th>
+   <th>Street</th>
+   <th>City</th>
+   <th>Province</th>
+   <th>Postal</th>
+   <th>Role ID</th>
+   <th>Active</th>
+   <th>Password</th>
+   
+ </tr>
+
+ <% @employees.each do |employee| %>
+   <tr>
+     <td><%= employee.EmployeeID %></td>
+     <td><%= employee.Firstname %></td>
+     <td><%= employee.Lastname %></td>
+     <td><%= employee.Phone %></td>
+     <td><%= employee.Email %></td>
+     <td><%= employee.Street %></td>
+     <td><%= employee.City %></td>
+     <td><%= employee.Province %></td>
+     <td><%= employee.Postal %></td>
+     <td><%= employee.RoleID %></td>
+     <td><%= employee.Active %></td>
+     <td><%= employee.Password %></td>
+
+   <td><%= link_to 'Show', employee_path(employee) %></td>
+     <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+     <td><%= link_to 'Delete', employee_path(employee),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+   </tr>
+ <% end %>
+</table>  

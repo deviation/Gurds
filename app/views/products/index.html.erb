@@ -1,0 +1,36 @@
+<h1>Products List</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+<p><%= link_to 'Create New Product', new_product_path %></p>
+<p><%= link_to "Printable Products List (PDF)", products_path(@products, format: "pdf")  %></p>
+<br>
+
+<table>
+ <tr>
+   <th>Product ID</th>
+   <th>Category</th>
+   <th>Brand</th>
+   <th>Description</th>
+   <th>SKU</th>
+   <th>Active</th>
+   
+ </tr>
+
+ <% @products.each do |product| %>
+   <tr>
+     <td><%= product.ProductID %></td>
+     <td><%= product.Category %></td>
+     <td><%= product.Brand %></td>
+     <td><%= product.Description %></td>
+     <td><%= product.SKU %></td>
+     <td><%= product.Active %></td>
+
+     <td><%= link_to 'Show', product_path(product) %></td>
+     <td><%= link_to 'Edit', edit_product_path(product) %></td>
+     <td><%= link_to 'Delete', product_path(product),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+   </tr>
+ <% end %>
+</table>

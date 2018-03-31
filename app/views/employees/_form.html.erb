@@ -1,0 +1,80 @@
+<%= form_with model: @employee, local: true do |form| %>
+
+<% if @employee.errors.any? %>
+<div id="error_explanation">
+<h2>
+    <%= pluralize(@employee.errors.count, "error") %> prohibited
+    This employee from being saved:
+    </h2>
+    <ul>
+        <% @employee.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+  <p>
+    First Name:
+    <%= form.text_field :Firstname %>
+  </p>
+  
+  <p>
+    Last Name:
+    <%= form.text_field :Lastname %>
+  </p>
+
+  <p>
+    Phone:
+    <%= form.text_field :Phone %>
+  </p>
+
+  <p>
+    Email:
+    <%= form.text_field :Email %>
+  </p>
+
+  <p>
+    Street:
+    <%= form.text_field :Street %>
+  </p>
+
+  <p>
+    City:
+    <%= form.text_field :City %>
+  </p>
+
+  <p>
+    Province:
+    <%= form.select :Province, [ 'AB','BC','MB',
+    'NB','NL','NS' 'ON','PE','QC','SK','NT','NU','YT' ], :prompt => 'NB' %>
+  </p>
+
+  <p>
+    Postal:
+    <%= form.text_field :Postal %>
+  </p>
+
+  <p>
+    Role ID:
+    <%= form.select :RoleID, [ 'Accounting','Admin','Dispatcher',
+    'Driver','Management','Manager','Sales','Warehouse' ], :prompt => 'Select One' %>
+  </p>
+
+  <p>
+    Active:
+    <%= form.check_box :Active %>
+  </p>
+
+  <p>
+    Password:
+    <%= form.text_field :Password %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+
+
+

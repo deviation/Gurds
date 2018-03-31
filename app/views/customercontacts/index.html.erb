@@ -1,0 +1,46 @@
+<h1>Contacts List</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+<p><%= link_to 'Create New customercontact', new_customercontact_path %></p>
+<p><%= link_to "Printable customercontacts List (PDF)", customercontacts_path(@customercontacts, format: "pdf")  %></p>
+
+<br>
+
+<table>
+ <tr>
+   <th>Contact ID</th>
+   <th>Customer ID</th>
+   <th>First Name</th>
+   <th>Last Name</th>
+   <th>Phone</th>
+   <th>Email</th>
+   <th>Street</th>
+   <th>City</th>
+   <th>Province</th>
+   <th>Postal</th>
+   <th>Note</th>
+   
+ </tr>
+
+ <% @customercontacts.each do |customercontact| %>
+   <tr>
+     <td><%= customercontact.ContactID %></td>
+     <td><%= customercontact.CustomerID %></td>
+     <td><%= customercontact.Firstname %></td>
+     <td><%= customercontact.Lastname %></td>
+     <td><%= customercontact.Phone %></td>
+     <td><%= customercontact.Email %></td>
+     <td><%= customercontact.Street %></td>
+     <td><%= customercontact.City %></td>
+     <td><%= customercontact.Province %></td>
+     <td><%= customercontact.Postal %></td>
+     <td><%= customercontact.Note %></td>
+
+     <td><%= link_to 'Edit', edit_customercontact_path(customercontact) %></td>
+     <td><%= link_to 'Delete', customercontact_path(customercontact),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+   </tr>
+ <% end %>
+</table>  

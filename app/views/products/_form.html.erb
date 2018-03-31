@@ -1,0 +1,81 @@
+
+<%= form_with model: @product, local: true do |form| %>
+ 
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@product.errors.count, "error") %> prohibited
+        this product from being saved:
+      </h2>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    Product ID:
+    <%= form.text_field :ProductID %>
+  </p>
+ 
+  <p>
+    Category:
+    <%= form.select :Category, [ 'Soda','Juice','Energy','Water' ], :prompt => 'Select One' %>
+  </p>
+ 
+  <p>
+    Brand:
+    <%= form.text_field :Brand %>
+  </p>
+
+  <p>
+    Description:
+    <%= form.text_field :Description %>
+  </p>
+
+  <p>
+    Volume:
+    <%= form.text_field :Volume %>
+  </p>
+
+  <p>
+    Pack Size:
+    <%= form.text_field :PackSize %>
+  </p>
+
+  <p>
+    SKU:
+    <%= form.text_field :SKU %>
+  </p>
+
+  <p>
+    Dimensions:
+    <%= form.text_field :Dimensions %>
+  </p>
+
+  <p>
+    Weight:
+    <%= form.text_field :Weight %>
+  </p>
+
+  <p>
+    Cost:
+    <%= form.text_field number_to_currency(:Cost) %>
+  </p>
+
+  <p>
+    Price:
+    <%= form.text_field :Price %>
+  </p>
+
+  <p>
+    Active:
+    <%= form.check_box :Active %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,42 @@
+<h1>Routes</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+<p><%= link_to 'Create New route', new_route_path %></p>
+<br>
+
+<table>
+ <tr>
+   <th>Route ID</th>
+   <th>Route Date</th>
+   <th>Vehicle ID</th>
+   <th>Zone ID</th>
+   <th>Employee ID</th>
+   <th>Note</th>
+   <th>Start Time</th>
+   <th>Complete Time</th>
+   <th>Total Route Weight</th>
+   <th>Load Percentage</th>
+   
+ </tr>
+
+    <% @routes.each do |route| %>
+      <tr>
+
+            <td><%= route.RouteID %></td>
+            <td><%= route.RouteDate.strftime('%Y-%A-%B-%d') %></td>
+            <td><%= route.VehicleID %></td>
+            <td><%= route.orders[0] ? route.orders[0].customer.ZoneID : "NA" %></td>
+            <td><%= route.EmployeeID %></td>
+            <td><%= route.Note %></td>
+            <td><%= route.StartTime ? route.StartTime.strftime('%Y-%A-%B-%d') : '' %></td>
+            <td><%= route.CompleteTime ? route.CompleteTime.strftime('%Y-%A-%B-%d') : '' %></td>
+            <td><%= number_with_precision(getTruckWeight(route.VehicleID), precision: 2) %> KG</td>
+            <td><%= number_with_precision((getTruckWeight(route.VehicleID)/ Vehicle.find(route.VehicleID).Weight)*100, precision: 2) %>%</td>
+
+            <td><%= link_to 'Show', route_path(route) %></td>
+            <td><%= link_to 'Edit', edit_route_path(route) %></td>
+
+    </tr>
+ <% end %>
+</table>  
+

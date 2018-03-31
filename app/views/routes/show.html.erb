@@ -1,0 +1,56 @@
+<h1>Route Information</h1>
+
+<%= link_to 'Back', routes_path %>
+<%= link_to 'Edit', edit_route_path(@route) %>
+<br>
+
+
+<table>
+<tr>
+<th>Route Details</th>
+</tr>
+
+ <tr>
+   <th>Route ID</th>
+   <th>Route Date</th>
+   <th>Vehicle ID</th>
+   <th>Employee ID</th>
+   <th>Note</th>
+   <th>Start Time</th>
+   <th>Complete Time</th>
+   
+ </tr>
+
+   <tr>
+
+     <td><%= @route.RouteID %></td>
+     <td><%= @route.RouteDate.strftime('%Y-%A-%B-%d') %></td>
+     <td><%= @route.VehicleID %></td>
+     <td><%= @route.EmployeeID %></td>
+     <td><%= @route.Note %></td>
+     <td><%= @route.StartTime %></td>
+     <td><%= @route.CompleteTime %></td>
+ 
+   </tr>
+
+</table> 
+
+<table>
+<tr>
+<th>Route Orders</th>
+</tr>
+<tr>
+   <th>Order ID</th>
+   <th>Customer ID</th>
+   <th>Order Type</th>
+</tr>
+
+<% @route.orders.each do |route| %>
+   <tr>
+          <td><%= route.OrderID %></td>
+          <td><%= route.CustomerID %></td>
+          <td><%= route.OrderType %></td>
+           <td><%= link_to 'Show', order_path(route) %></td>
+   </tr>
+<% end %>
+</table> 

@@ -1,0 +1,80 @@
+<%= form_with model: @customer, local: true do |form| %>
+
+<% if @customer.errors.any? %>
+<div id="error_explanation">
+<h2>
+    <%= pluralize(@customer.errors.count, "error") %> prohibited
+    this customer from being saved:
+    </h2>
+    <ul>
+        <% @customer.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+  <p>
+    Customer Name:
+    <%= form.text_field :CustomerName %>
+  </p>
+  
+  <p>
+    Street:
+    <%= form.text_field :Street %>
+  </p>
+
+  <p>
+    City:
+    <%= form.text_field :City %>
+  </p>
+
+  <p>
+    Province:
+    <%= form.select :Province, [ 'AB','BC','MB',
+    'NB','NL','NS' 'ON','PE','QC','SK','NT','NU','YT' ], :prompt => 'NB' %>
+  </p>
+
+  <p>
+    Postal:
+    <%= form.text_field :Postal %>
+  </p>
+
+  <p>
+    Phone:
+    <%= form.text_field :Phone %> <br />
+  </p>
+
+  <p>
+    Email:
+    <%= form.text_field :Email %>
+  </p>
+
+  <p>
+    Zone ID:
+    <%= form.text_field :ZoneID %>
+  </p>
+
+  <p>
+    Start Date:
+    <%= form.text_field :StartDate.strftime('%Y-%A-%B-%d') %>
+  </p>
+
+  <p>
+    Note:
+    <%= form.text_area :Note, size: "30x10" %>
+  </p>
+
+  <p>
+    Customer Type ID:
+    <%= form.select :CustomerTypeID, [ 'Convenience','Grocer',
+    'Hotel','Restaurant','School','Vending' ], :prompt => 'Convenience' %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+
+
+

@@ -1,0 +1,74 @@
+<div id= "form">
+<%= form_with model: @contract, local: true do |form| %>
+ 
+  <% if @contract.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@contract.errors.count, "error") %> prohibited
+        this contract from being saved:
+      </h2>
+      <ul>
+        <% @contract.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    Customer ID:
+    <%= form.text_field :CustomerID %>
+  </p>
+ 
+  <p>
+    Discount:
+    <%= form.text_field :Discount %>
+  </p>
+
+  <p>
+    Start Date:
+    <%= date_field(:q, :date, :value => Time.now.strftime('%Y-%m-%d')) %>
+  </p>
+
+  <p>
+    End Date:
+    <%= form.date_select :EndDate %>
+  </p>
+
+  <p>
+    Payment Terms:
+    <%= form.text_field :PaymentTerms %>
+  </p>
+
+  <p>
+    Delivery Day Of Week:
+    <%= form.select :DeliveryDayOfWeek, [ 'Sunday','Monday','Tuesday',
+    'Wednesday','Thursday','Friday' 'Saturday' ], :prompt => 'Choose a delivery day' %>
+  </p>
+
+  <p>
+    Employee ID:
+    <%= form.text_field :EmployeeID %>
+  </p>
+
+  <p>
+    Note:
+    <%= form.text_area :Note, size: "30x10" %>
+  </p>
+
+  <p>
+    Commission:
+    <%= form.text_field :Commission %>
+  </p>
+
+  <p>
+    Active:
+    <%= form.check_box :Active %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+</div>

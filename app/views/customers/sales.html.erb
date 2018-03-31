@@ -1,0 +1,44 @@
+<h1>Customers List</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+<p><%= link_to 'Create New Customer', new_customer_path %></p>
+<p><%= link_to "Printable Customers List (PDF)", customers_path(@customers, format: "pdf")  %></p>
+<br>
+
+<table>
+ <tr>
+   <th>Customer ID</th>
+   <th>Customer Name</th>
+   <th>Street</th>
+   <th>City</th>
+   <th>Province</th>
+   <th>Phone</th>
+   <th>Zone ID</th>
+   
+ </tr>
+
+<% @customers.each do |customer| %>
+   
+  <% if customer.contracts.length > 0 %>
+  <tr>
+
+    <% customer.contracts.each do |contract| %>
+     <td><%= link_to contract.CustomerID, contract_path(contract) %></td>
+    <% end %>
+
+     <td>&nbsp;<%= link_to customer.CustomerName, contacts_customer_path(customer) %></td>
+
+      <td><%= customer.Street %></td>
+      <td><%= customer.City %></td>
+      <td><%= customer.Province %></td>
+      <td><%= number_to_phone(customer.Phone) %></td>
+      <td><%= customer.ZoneID %></td>
+
+      <td><%= link_to "Notes", notes_customer_path(customer) %></td>
+      <td><%= link_to 'Show', customer_path(customer) %></td>
+      <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+
+      </tr>
+    <% end %>
+  <% end %>
+</table>  

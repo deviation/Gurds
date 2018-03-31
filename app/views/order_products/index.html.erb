@@ -1,0 +1,26 @@
+<h1>orderproducts List</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+
+<br>
+
+<table>
+ <tr>
+   <th>Order ID</th>
+   <th>Product ID</th>
+   <th>Quantity</th>
+
+   
+ </tr>
+
+    <% @orderproducts.each do |orderproduct| %>
+      <tr>
+            <td><%= orderproduct.OrderID %></td>
+            <td><%= orderproduct.ProductID %></td>
+            <td><%= orderproduct.Quantity %></td>
+
+            <td><%= link_to 'Edit', edit_orderproduct_path(orderproduct) %></td>
+
+    </tr>
+ <% end %>
+</table>  

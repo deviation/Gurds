@@ -1,0 +1,35 @@
+<h1>Listing Vehicles</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+<p><%= link_to 'Create New Vehicle', new_vehicle_path %></p>
+<p><%= link_to "Printable Vehicles List (PDF)", vehicles_path(@vehicles, format: "pdf")  %></p>
+
+
+<table>
+ <tr>
+   <th>Vehicle ID</th>
+   <th>Vehicle Description</th>
+   <th>License Plate</th>
+   <th>Weight</th>
+   <th>Capacity</th>
+
+ </tr>
+
+<% @vehicles.each do |vehicle| %>
+   <tr>
+     <td><%= vehicle.VehicleID %></td>
+     <td><%= vehicle.VehicleDescription %></td>
+     <td><%= vehicle.LicensePlate %></td>
+     <td><%= vehicle.Weight %></td>
+     <td><%= vehicle.Capacity %></td>
+
+    <td><%= link_to 'Show', vehicle_path(vehicle) %></td>
+    <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
+    <td><%= link_to 'Delete', vehicle_path(vehicle),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+   </tr>
+ 
+<% end %>
+
+</table>

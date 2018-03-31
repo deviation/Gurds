@@ -1,0 +1,79 @@
+<%= form_with model: @customercontact, local: true do |form| %>
+
+<% if @customercontact.errors.any? %>
+<div id="error_explanation">
+<h2>
+    <%= pluralize(@customercontact.errors.count, "error") %> prohibited
+    This customercontact from being saved:
+    </h2>
+    <ul>
+        <% @customercontact.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+  <p>
+    Contract ID:
+    <%= form.text_field :ContactID %>
+  </p>
+
+  <p>
+    Customer ID:
+    <%= form.text_field :CustomerID %>
+  </p>
+
+  <p>
+    First Name:
+    <%= form.text_field :Firstname %>
+  </p>
+  
+  <p>
+    Last Name:
+    <%= form.text_field :Lastname %>
+  </p>
+
+  <p>
+    Phone:
+    <%= form.text_field :Phone %>
+  </p>
+
+  <p>
+    Email:
+    <%= form.text_field :Email %>
+  </p>
+
+  <p>
+    Street:
+    <%= form.text_field :Street %>
+  </p>
+
+  <p>
+    City:
+    <%= form.text_field :City %>
+  </p>
+
+  <p>
+    Province:
+    <%= form.select :Province, [ 'AB','BC','MB',
+    'NB','NL','NS' 'ON','PE','QC','SK','NT','NU','YT' ], :prompt => 'NB' %>
+  </p>
+
+  <p>
+    Postal:
+    <%= form.text_field :Postal %>
+  </p>
+
+  <p>
+    Note:
+    <%= form.text_area :Note %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+
+
+

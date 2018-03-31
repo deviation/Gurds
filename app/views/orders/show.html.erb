@@ -1,0 +1,83 @@
+<h1>Order Information</h1>
+
+<%= link_to 'Back', orders_path %>
+<%= link_to 'Edit', edit_order_path(@order) %>
+<br>
+
+
+<p><%= link_to "Printable order (PDF)", order_path(@order, format: "pdf")  %></p>
+<br>
+
+
+<table>
+<tr>
+<th>Order Details</th>
+</tr>
+
+ <tr>
+   <th>Order ID</th>
+   <th>Customer ID</th>
+   <th>Date Ordered</th>
+   <th>Delivery Date</th>
+   <th>Employee ID</th>
+   <th>Order Type</th>
+   <th>Status</th>
+   <th>Note</th>
+   <th>Route ID</th>
+   
+ </tr>
+
+
+   <tr>
+
+     <td><%= @order.OrderID %></td>
+     <td><%= @order.CustomerID %></td>
+     <td><%= @order.DateOrdered %></td>
+     <td><%= @order.DeliveryDate %></td>
+     <td><%= @order.EmployeeID %></td>
+     <td><%= @order.OrderType %></td>
+     <td><%= @order.Status %></td>
+     <td><%= @order.Note %></td>
+     <td><%= @order.RouteID %></td>
+
+   </tr>
+ 
+</table> 
+
+<br>
+
+<table>
+<tr>
+<th>Order Products</th>
+</tr>
+ <tr>
+   <th>Product ID</th>
+   <th>Category</th>
+   <th>Pack Size</th>
+   <th>SKU</th>
+   <th>Price Per Unit</th>
+   <th>Quantity</th>
+   <th>Total</th>
+   
+ </tr>
+
+<tr>
+<th>Weekly Product Deliveries</th>
+</tr> 
+<% @order.orderproducts.each do |product| %>
+   <tr>
+
+     <td><%= product.ProductID %></td>
+     <td><%= product.product.Category %></td>
+     <td><%= product.product.PackSize %></td>
+     <td><%= product.product.SKU %></td>
+     <td><%= number_to_currency(product.product.Price) %></td>
+     <td><%= product.Quantity %></td>
+     <td><%= number_to_currency(product.Quantity * product.product.Price) %></td>
+   
+   </tr>
+ <% end %>
+</table> 
+
+<%= pie_chart @order.products.group(:Brand).count %>
+<%= pie_chart @order.products.group(:Category).count %>

@@ -1,0 +1,40 @@
+<h1>Orders List</h1>
+
+<p><%= link_to 'Back to Main Page', root_path %></p>
+<p><%= link_to 'Create New Order', new_order_path %></p>
+<br>
+
+<%= pie_chart @orders.group(:DateOrdered).count %>
+
+<table>
+ <tr>
+   <th>Order ID</th>
+   <th>Customer ID</th>
+   <th>Date Ordered</th>
+   <th>Delivery Date</th>
+   <th>Employee ID</th>
+   <th>Order Type</th>
+   <th>Status</th>
+   <th>Note</th>
+   <th>Route ID</th>
+   
+ </tr>
+
+    <% @orders.each do |order| %>
+      <tr>
+            <td><%= order.OrderID %></td>
+            <td><%= order.CustomerID %></td>
+            <td><%= order.DateOrdered.strftime('%Y-%A-%B-%d') %></td>
+            <td><%= order.DeliveryDate.strftime('%Y-%A-%B-%d') %></td>
+            <td><%= order.EmployeeID %></td>
+            <td><%= order.OrderType %></td>
+            <td><%= order.Status %></td>
+            <td><%= order.Note %></td>
+            <td><%= order.RouteID %></td>
+            
+            <td><%= link_to 'Show', order_path(order) %></td>
+            <td><%= link_to 'Edit', edit_order_path(order) %></td>
+
+    </tr>
+ <% end %>
+</table>  

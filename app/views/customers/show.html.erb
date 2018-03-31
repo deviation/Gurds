@@ -1,0 +1,72 @@
+<h1>Customer Information</h1>
+
+<%= link_to 'Back', customers_path %>
+<%= link_to 'Edit', edit_customer_path(@customer) %>
+<br>
+
+<table>
+ <tr>
+   <th>Customer ID</th>
+   <th>Customer Name</th>
+   <th>Contacts</th>
+   <th>Street</th>
+   <th>City</th>
+   <th>Province</th>
+   <th>Postal</th>
+   <th>Phone</th>
+   <th>Email</th>
+   <th>Zone ID</th>
+   <th>Start Date</th>
+   <th>Note</th>
+   <th>Customer Type ID</th>
+   
+ </tr>
+
+
+   <tr>
+
+     <td><%= @customer.CustomerID %></td>
+     <td><%= @customer.CustomerName %></td>
+     <td><%= link_to "Contact", contacts_customer_path(@customer) %></td>
+     <td><%= @customer.Street %></td>
+     <td><%= @customer.City %></td>
+     <td><%= @customer.Province %></td>
+     <td><%= @customer.Postal %></td>
+     <td><%= number_to_phone(@customer.Phone) %></td>
+     <td><%= @customer.Email %></td>
+     <td><%= @customer.ZoneID %></td>
+     <td><%= @customer.StartDate.strftime('%Y-%A-%B-%d') %></td>
+     <td><%= @customer.Note %></td>
+     <td><%= @customer.CustomerTypeID %></td>
+
+   </tr>
+ 
+</table> 
+
+<table>
+<tr>
+<th>Weekly Deliverables</th>
+</tr>
+  <tr>
+      <th>Order ID</th>
+      <th>Date Ordered</th>
+      <th>Delivery Date</th>
+      <th>Status</th>
+      <th>Order Total</th>
+    
+  </tr>
+<% @customer.orders.each do |order| %>
+   <tr>
+
+     <td><%= order.OrderID %></td>
+     <td><%= order.DateOrdered.strftime('%Y-%A-%B-%d') %></td>
+     <td><%= order.DeliveryDate.strftime('%Y-%A-%B-%d') %></td>
+     <td><%= order.Status %></td>
+     <td></td>
+     <td><%= link_to 'Show', order_path(order) %></td>
+
+   </tr>
+ <% end %>
+</table>
+
+

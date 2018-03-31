@@ -1,0 +1,63 @@
+<%= form_with model: @customernote, local: true do |form| %>
+
+<% if @customernote.errors.any? %>
+<div id="error_explanation">
+<h2>
+    <%= pluralize(@customernote.errors.count, "error") %> prohibited
+    this customernote from being saved:
+    </h2>
+    <ul>
+        <% @customernote.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+  <p>
+    Customer ID:
+    <%= form.text_field :CustomerName, data: { autocomplete_source: customers_path} %>
+  </p>
+  
+  <p>
+    Employee ID:
+    <%= form.text_field :EmployeeID %>
+  </p>
+
+  <p>
+    Note Date Time:
+    <%= form.text_field :NoteDateTime %>
+  </p>
+
+  <p>
+    Note Type ID:
+    <%= form.select :NoteTypeID, [ 'COMPLAINT','FEED','INFO' ], :prompt => 'Please Choose a Note type' %>
+  </p>
+
+  <p>
+    Note:
+    <%= form.text_area :Note, size: "50x20"%>
+  </p>
+
+  <p>
+    Resolution Date Time:
+    <%= form.text_field :ResolutionDateTime %> <br />
+  </p>
+
+  <p>
+    Resolution:
+    <%= form.text_field :Resolution %>
+  </p>
+
+  <p>
+    Resolved:
+    <%= form.check_box :Resolved %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+
+
+
