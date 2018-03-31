@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if user.is_a?(Customer)
         redirect_to customer_path(user)
       else 
- 
+        redirect_to root_path
       end
 
     else

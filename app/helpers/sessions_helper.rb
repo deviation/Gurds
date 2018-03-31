@@ -8,7 +8,8 @@ module SessionsHelper
           session[:user_role] = 'Customer'
         else
           if user.is_a?(Employee)
-            session[:user_id] = user.EmplyeeID
+
+            session[:user_id] = user.EmployeeID
             session[:user_role] = user.RoleID
           end
         end
@@ -16,7 +17,8 @@ module SessionsHelper
 
       # Returns the current logged-in user (if any).
     def current_user
-      if session[:user_role] = 'Customer'
+      puts "Finding user: " + session[:user_id].to_s
+      if session[:user_role] == 'Customer'
          @current_user ||= Customer.find_by(CustomerID: session[:user_id])
       else
          @current_user ||= Employee.find_by(EmployeeID: session[:user_id])
@@ -25,7 +27,6 @@ module SessionsHelper
 
     # Returns true if the customer is logged in, false otherwise.
     def logged_in?
-      puts "logged_in?"
       !current_user.nil?
     end
 
